@@ -18,14 +18,7 @@ app.get('/notes', (req,res) =>{
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 })
 
-app.get('/api/notes', (req,res) => {
-    const notes = JSON.stringify(db)
-    res.send(notes)
-})
-
-app.listen(PORT, () =>{
-    console.log(`Listening on port ${PORT} http://localhost:${PORT}`)
-})
+app.get('/api/notes', (req,res) => res.send(db))
 
 //add new note
 app.post('/api/notes',(req,res)=>{
@@ -35,12 +28,26 @@ app.post('/api/notes',(req,res)=>{
         const newNote ={
             title,
             text
-        }
-        db.push(newNote);
-        const newNoteString = JSON.parse(newNote)
-        fs.writeFileSync('./db/db.json', newNoteString)
-        console.log('success')
+        };
+
+        fs.readFile('./db/db.json', 'utf8', (err, data) =>{
+            if (err) {
+                console.error(err)
+            } else {
+                const parsedNotes = JSON.parse(data)
+            
+                parsedNotes.push(newNote)
+                fs.writeFileSync('./db/db.json', JSON.stringify(parsedNotes, null, 4),(writeErr)=>
+                writeErr
+                ? console.error(writeErr)
+                : console.info('Success'))
+            }
+        })
     }
-}) 
+})
+
+app.listen(PORT, () =>{
+    console.log(`Listening on port ${PORT} http://localhost:${PORT}`)
+})
 
 
