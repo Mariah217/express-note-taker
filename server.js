@@ -2,7 +2,7 @@ const { randomUUID } = require('crypto')
 const express = require('express')
 const fs = require ('fs')
 const app = express()
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 const path = require('path')
 const db = require('./db/db.json')
 const uuid = require('./helpers/uuid')
@@ -54,7 +54,7 @@ app.post('/api/notes',(req,res)=>{
     app.get('/')
 
 app.listen(PORT, () =>{
-    console.log(`Listening on port ${PORT} http://localhost:${PORT}`)
+    console.log("App is listening on port http://localhost:" + PORT)
 })
 
 
