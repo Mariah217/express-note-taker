@@ -1,35 +1,38 @@
 const router = require('express').Router()
+const fs = require('fs')
+const db = require('../db/db.json')
+const uuid = require('../helpers/uuid')
 
-app.get('/api/notes', (req,res) => res.send(db))
-
+router.get('/api/notes', (req, res) => {
+    res.json(db)
+})
 
 //add new note
-app.post('/api/notes',(req,res)=>{
-    const {title, text} = req.body
+router.post('/api/notes', (req, res) =>{
     console.log(req.body)
-    if (title !="" && text !="") {
-        const newNote ={
+    const {title, text,}= req.body
+    if (text && title){
+        const newNote = {
             title,
             text,
             note_id: uuid(),
-        };
-
-        fs.readFile('./db/db.json', 'utf8', (err, data) =>{
-            if (err) {
+        }
+        fs.readFile('./db/db.json', 'utf8', (err,data)=>{
+            if (err){
                 console.error(err)
             } else {
                 const parsedNotes = JSON.parse(data)
-            
                 parsedNotes.push(newNote)
-                fs.writeFileSync('./db/db.json', JSON.stringify(parsedNotes, null, 4),(writeErr)=>
+
+                fs.writeFileSync('./db/db.json', JSON.stringify(parsedNotes, null, 4), 
+                (writeErr)=>
                 writeErr
                 ? console.error(writeErr)
-                : console.info('Success'))
+                : console.info('Success')
+                )
             }
-           //need to find a way to save note without refreshing page
         })
     }
 })
 
-
-module.exports=router
+module.exports = router
