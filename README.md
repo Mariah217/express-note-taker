@@ -8,6 +8,7 @@ Note Taker is a very simple, easy to use app to take notes. You can make your gr
 ## Usage
 <a href = "https://mariah217.github.io/mariahs-express-note-taker/">Click for live link</a>
 <br>
+<br>
 ![note taker screenshot](./images/Note%20Taker.PNG)
 
 ## Credits
