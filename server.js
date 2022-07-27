@@ -6,7 +6,7 @@ const path = require("path");
 const db = require("./db/db.json");
 const uuid = require("./helpers/uuid");
 
-
+//Middleware
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -34,21 +34,25 @@ app.post("/api/notes", (req, res) => {
             title,
             text
         }
-
         db.push((newNote));
-        const noteString = JSON.stringify(db, null, "\t")
+        const noteString = JSON.stringify(db, null, 4)
 
         fs.writeFile("./db/db.json", noteString, (err) =>
-                err
-                    ? console.error(err)
-                    : console.log("Success")
+            err
+                ? console.error(err)
+                : console.log("Success")
         )
     }
     res.json(db)
 })
 
 //delete note
-app.delete()
+// app.delete("/api/notes/:id", (req, res)=>{
+//     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
+//     const delNote = notes.filter((rmvNote) => rmvNote.id !== req.params.id);
+//     fs.writeFileSync("./db/db.json", JSON.stringify(delNote, null, 4));
+//     res.json(delNote);
+// })
 
 //wild card
 app.get("*", (req, res) => {
