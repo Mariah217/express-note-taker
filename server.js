@@ -46,14 +46,6 @@ app.post("/api/notes", (req, res) => {
     res.json(db)
 })
 
-//delete note
-// app.delete("/api/notes/:id", (req, res)=>{
-//     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
-//     const delNote = notes.filter((rmvNote) => rmvNote.id !== req.params.id);
-//     fs.writeFileSync("./db/db.json", JSON.stringify(delNote, null, 4));
-//     res.json(delNote);
-// })
-
 //wild card
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))

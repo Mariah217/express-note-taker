@@ -2,11 +2,11 @@
 
 ## Description
 
-Note Taker is a very simple, easy to use app to take notes. You can make your grocery list, To-Do's, school notes, etc. 
+Note Taker is a very simple, easy to use app to take notes. You can make your grocery list, To-Do's, school notes, etc. When you first load the website, all you have to do is select Get Started and it will take you to the Notes page. On this page you are able to add any notes you would like and save them. Once saved you can then click on each note to view the full note. You can also select the plus button in the upper right hand corner to add a new note.
 
 
 ## Usage
-<a href = "https://mariah217.github.io/mariahs-express-note-taker/">Click for live link</a>
+<a href = "https://note-taker-mj.herokuapp.com">Click for live link</a>
 <br>
 <br>
 ![note taker screenshot](./images/Note%20Taker.PNG)
